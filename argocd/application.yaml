@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: node-example
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/tarun-koshti/node-example-argocd.git
+    targetRevision: main
+    path: k8s
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: node-example
+
+  syncPolicy:
+    automated:
+      prune: true       # delete resources removed from Git
+      selfHeal: true    # fix manual changes in cluster
+    syncOptions:
+      - CreateNamespace=true

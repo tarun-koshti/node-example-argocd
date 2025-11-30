@@ -7,7 +7,7 @@ const cors = require("cors");
 // counter variable to keep track of requests
 let count = 0;
 // Default message
-const message = "Welcome to the Node-Example API";
+const message = "Welcome to the Node-Example API - Deployed with ArgoCD!";
 
 const app = express();
 app.use(cors());

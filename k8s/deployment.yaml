@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: node-example
-          image: tarunkoshti/node-example:v2
+          image: tarunkoshti/node-example:v3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000

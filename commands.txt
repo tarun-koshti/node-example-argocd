@@ -12,3 +12,7 @@ kubectl get secret argocd-initial-admin-secret -n argocd `
     [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_))
 }
 FFekilWIiGk943vu
+
+kubectl get pods -n node-example
+
+minikube service -n node-example node-example

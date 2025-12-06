@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: node-example
   namespace: node-example
+  annotations:
+    argocd-image-updater.argoproj.io/node.pull-secret: none
 spec:
   replicas: 3
   selector:

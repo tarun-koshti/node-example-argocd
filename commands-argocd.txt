@@ -1,0 +1,7 @@
+Command to add git repo
+argocd repo add https://github.com/<your-username>/<your-repo>.git \
+  --username <your-username> \
+  --password <GITHUB_TOKEN>
+
+Command to add argocd image updater
+kubectl apply -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/config/install.yaml

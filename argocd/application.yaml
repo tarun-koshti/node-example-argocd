@@ -3,6 +3,9 @@ kind: Application
 metadata:
   name: node-example
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: node=tarunkoshti/node-example-argocd
+    argocd-image-updater.argoproj.io/node.update-strategy: latest
 spec:
   project: default
 

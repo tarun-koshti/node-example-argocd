@@ -4,8 +4,39 @@ metadata:
   name: node-example
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: node=tarunkoshti/node-example
+    argocd-image-updater.argoproj.io/image-list: apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-example
+  namespace: node-example
+  annotations:
+    argocd-image-updater.argoproj.io/node.pull-secret: none
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: node-example
+  template:
+    metadata:
+      labels:
+        app: node-example
+    spec:
+      containers:
+        - name: node-example
+          image: tarunkoshti/node-example:v3
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+      #     volumeMounts:
+      #       - name: node-example-storage
+      #         mountPath: /app/public
+      # volumes:
+      #   - name: node-example-storage
+      #     persistentVolumeClaim:
+      #       claimName: node-example-pvc
+=tarunkoshti/node-example
     argocd-image-updater.argoproj.io/node.update-strategy: latest
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
 

@@ -1,4 +1,5 @@
 package-lock.json
+secrets.env
 # Logs
 logs
 *.log

@@ -1,0 +1,23 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: node-example-updater
+  namespace: argocd      # same namespace where ArgoCD Applications live
+spec:
+  # ArgoCD Applications live in this namespace
+  namespace: argocd
+
+  # How to write changes
+  writeBackConfig:
+    method: "git"        # use Git write-back
+
+  # Default behavior for images (optional, but nice)
+  commonUpdateSettings:
+    updateStrategy: "latest"   # always pick newest tag
+
+  # Which Applications + images to manage
+  applicationRefs:
+    - namePattern: "node-example"
+      images:
+        - alias: "node-example"
+          imageName: "tarunkoshti/node-example"

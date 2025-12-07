@@ -4,27 +4,20 @@ metadata:
   name: node-example
   namespace: argocd
   annotations:
-    # alias `node-example` for the container image
     argocd-image-updater.argoproj.io/image-list: node-example=tarunkoshti/node-example
-    # update strategy for that alias
     argocd-image-updater.argoproj.io/node-example.update-strategy: latest
-    # tell Image Updater to write changes back to Git
     argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
-
   source:
     repoURL: https://github.com/tarun-koshti/node-example-argocd.git
     targetRevision: main
     path: k8s
-
+    kustomize: {} # <- THIS enables supported source type
   destination:
     server: https://kubernetes.default.svc
     namespace: node-example
-
   syncPolicy:
     automated:
-      prune: true       # delete resources removed from Git
-      selfHeal: true    # fix manual changes in cluster
-    syncOptions:
-      - CreateNamespace=true
+      prune: true
+      selfHeal: true
